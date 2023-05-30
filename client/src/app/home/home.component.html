@@ -20,6 +20,13 @@
           >Register</a
         >
       </p>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let todo of todos">
+          <h5>{{ todo.title }}</h5>
+          <p>{{ todo.content }}</p>
+          <p>{{ todo.completed ? "Completed" : "Not Completed" }}</p>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
