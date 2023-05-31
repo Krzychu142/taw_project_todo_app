@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResourceService } from '../services/resource.service';
-import { AuthService } from '../services/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -17,8 +16,7 @@ export class TodoDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private resourceService: ResourceService,
-    private authService: AuthService
+    private resourceService: ResourceService
   ) { }
 
   ngOnInit(): void {

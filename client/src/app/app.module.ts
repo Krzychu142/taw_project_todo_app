@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthGuard, AuthReverseGuard } from './guards/auth.guard';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
 import { AddTodoComponent } from './add-todo/add-todo.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddTodoComponent } from './add-todo/add-todo.component';
     HomeComponent,
     NavbarComponent,
     TodoDetailsComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    NotFoundComponent
   ],
   imports: [
     HttpClientModule,
