@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 import { ResourceService } from '../services/resource.service';
@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   private authSubscription: Subscription | undefined;
 
   constructor(
-    private http: HttpClient,
     private authService: AuthService,
     private resourceService: ResourceService
   ) {}
@@ -40,6 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.resourceService.getTodos().subscribe(
       response => {
         this.todos = response.todos;
+        console.log(this.todos);
       },
       error => {
         console.error(error);

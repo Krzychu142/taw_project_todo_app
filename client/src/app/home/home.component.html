@@ -1,33 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1 class="text-center mt-5">Welcome to My App!</h1>
-      <p class="text-center">
-        This is a fantastic app for managing your resources.
-      </p>
-
-      <p class="text-center">
-        <a
-          routerLink="/login"
-          class="btn btn-primary me-3"
-          *ngIf="!isUserAuthenticated()"
-          >Log In</a
-        >
-        <a
-          routerLink="/register"
-          class="btn btn-secondary"
-          *ngIf="!isUserAuthenticated()"
-          >Register</a
-        >
-      </p>
-
       <ng-container *ngIf="isUserAuthenticated()">
         <ul class="list-group" *ngIf="todos && todos.length > 0">
           <li class="list-group-item todo-item" *ngFor="let todo of todos">
             <a [routerLink]="['/todo', todo._id]">
               <h5>{{ todo.title }}</h5>
             </a>
-            <p>{{ todo.content }}</p>
+            <p>{{ todo.content | truncate : 5 }}</p>
             <p
               [ngClass]="{
                 'text-success': todo.completed,
@@ -41,7 +21,6 @@
             </button>
           </li>
         </ul>
-
         <p
           class="text-center text-primary"
           *ngIf="!todos || todos.length === 0"
