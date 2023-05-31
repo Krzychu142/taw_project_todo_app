@@ -34,8 +34,6 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.apiUrl}/register`, user)
       .pipe(
         tap((response) => {
-          console.log(response);
-
           localStorage.setItem('token', response.token);
           this.userIsAuthenticated = true;
         })
@@ -46,7 +44,6 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, user)
       .pipe(
         tap((response) => {
-          console.log(response);
           localStorage.setItem('token', response.token);
           this.userIsAuthenticated = true;
         })
