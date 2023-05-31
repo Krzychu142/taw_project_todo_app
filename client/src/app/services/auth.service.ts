@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { User } from '../models/user.mode';
 import { AuthResponse } from '../models/auth.model';
 import { Router } from '@angular/router';
+import { setAuthTokenAndAuthState } from '../pipes/auth.pipe'; // Importujemy nasz pipe
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,7 @@ export class AuthService {
   registerUser(user: User): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/register`, user)
       .pipe(
+        setAuthTokenAndAuthState(this), 
         tap((response) => {
           localStorage.setItem('token', response.token);
           this.userIsAuthenticated = true;
@@ -43,6 +45,7 @@ export class AuthService {
   loginUser(user: { email: string, password: string }): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, user)
       .pipe(
+        setAuthTokenAndAuthState(this),
         tap((response) => {
           localStorage.setItem('token', response.token);
           this.userIsAuthenticated = true;
