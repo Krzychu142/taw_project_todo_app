@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResourceDetailComponent } from './resource-detail.component';
+import { AddTodoComponent } from './add-todo.component';
 
-describe('ResourceDetailComponent', () => {
-  let component: ResourceDetailComponent;
-  let fixture: ComponentFixture<ResourceDetailComponent>;
+describe('AddTodoComponent', () => {
+  let component: AddTodoComponent;
+  let fixture: ComponentFixture<AddTodoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResourceDetailComponent ]
+      declarations: [ AddTodoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ResourceDetailComponent);
+    fixture = TestBed.createComponent(AddTodoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

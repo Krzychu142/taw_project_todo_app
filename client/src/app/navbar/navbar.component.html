@@ -42,6 +42,14 @@
             >Logout</a
           >
         </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            *ngIf="isUserAuthenticated()"
+            routerLink="/add-todo"
+            >Add New Todo</a
+          >
+        </li>
       </ul>
     </div>
   </div>

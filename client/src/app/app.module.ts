@@ -4,33 +4,34 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AddEditResourceComponent } from './add-edit-resource/add-edit-resource.component';
-import { ResourceDetailComponent } from './resource-detail/resource-detail.component';
-import { TruncatePipe } from './truncate.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 import { HighlightDirective } from './highlight.directive';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AuthGuard, AuthReverseGuard } from './auth.guard';
+import { AuthGuard, AuthReverseGuard } from './guards/auth.guard';
+import { TodoDetailsComponent } from './todo-details/todo-details.component';
+import { AddTodoComponent } from './add-todo/add-todo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AddEditResourceComponent,
-    ResourceDetailComponent,
     TruncatePipe,
     HighlightDirective,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    TodoDetailsComponent,
+    AddTodoComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthGuard, AuthReverseGuard],
   bootstrap: [AppComponent]
