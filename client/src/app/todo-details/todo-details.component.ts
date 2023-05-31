@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ResourceService } from '../services/resource.service';
+import { AuthService } from '../services/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -16,7 +17,8 @@ export class TodoDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private resourceService: ResourceService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -29,10 +31,7 @@ export class TodoDetailsComponent implements OnInit {
   }
 
   fetchTodo(id: string): void {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.http.get<any>(`http://localhost:3001/todos/todos/${id}`, { headers }).subscribe(
+    this.resourceService.getTodo(id).subscribe(
       response => {
         this.todo = response.todo;
         this.todoForm = new FormGroup({
@@ -48,10 +47,7 @@ export class TodoDetailsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.http.put<any>(`http://localhost:3001/todos/todos/${this.todo._id}`, this.todoForm.value, { headers }).subscribe(
+    this.resourceService.updateTodo(this.todo._id, this.todoForm.value).subscribe(
       response => {
         this.updateSuccess = true;
         this.updateError = false;

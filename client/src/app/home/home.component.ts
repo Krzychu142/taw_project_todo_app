@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
-
+import { ResourceService } from '../services/resource.service';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +13,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   todos: any[] = [];
   private authSubscription: Subscription | undefined;
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
-
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private resourceService: ResourceService
+  ) {}
 
   isUserAuthenticated(): boolean {
     return this.authService.userIsAuthenticated;
@@ -34,10 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   fetchTodos(): void {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.http.get<any>('http://localhost:3001/todos/todos', { headers }).subscribe(
+    this.resourceService.getTodos().subscribe(
       response => {
         this.todos = response.todos;
       },
@@ -48,10 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   deleteTodo(id: string): void {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.http.delete<any>(`http://localhost:3001/todos/todos/${id}`, { headers }).subscribe(
+    this.resourceService.deleteTodo(id).subscribe(
       response => {
         this.todos = this.todos.filter(todo => todo._id !== id);
       },

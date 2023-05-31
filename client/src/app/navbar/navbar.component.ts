@@ -16,7 +16,6 @@ export class NavbarComponent {
   }
 
   handleLogoClick(): void {
-    console.log('Kliknięto przycisk w logoaut');
     this.authService.logout();
   }
 

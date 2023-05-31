@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ResourceService } from '../services/resource.service';
 
 @Component({
   selector: 'app-add-todo',
@@ -17,8 +16,7 @@ export class AddTodoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
-    private router: Router
+    private resourceService: ResourceService
   ) {
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
@@ -31,10 +29,7 @@ export class AddTodoComponent implements OnInit {
 
   onSubmit(): void {
     if (this.todoForm.valid) {
-      const token = localStorage.getItem('token');
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        
-      this.http.post<any>('http://localhost:3001/todos/todos', this.todoForm.value, { headers }).subscribe(
+      this.resourceService.createTodo(this.todoForm.value).subscribe(
         response => {
           this.updateSuccess = true;
           this.updateError = false;
