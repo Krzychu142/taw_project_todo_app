@@ -26,7 +26,14 @@
           *ngIf="!todos || todos.length === 0"
         >
           No todos found.
+          <a routerLink="/add-todo">Add a new todo</a>
         </p>
+      </ng-container>
+      <ng-container *ngIf="!isUserAuthenticated()">
+        <div class="jumbotron">
+          <h1 class="display-4">Welcome!</h1>
+          <p class="lead">Please <a href="/login">log in</a> to view your todos.</p>
+        </div>
       </ng-container>
     </div>
   </div>
