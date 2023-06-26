@@ -7,7 +7,7 @@
             <a [routerLink]="['/todo', todo._id]">
               <h5>{{ todo.title }}</h5>
             </a>
-            <p>{{ todo.content | truncate : 5 }}</p>
+            <p appHighlight>{{ todo.content | truncate : 5 }}</p>
             <p
               [ngClass]="{
                 'text-success': todo.completed,

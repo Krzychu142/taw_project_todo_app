@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
-import { HighlightDirective } from './highlight.directive';
+import { HighlightDirective } from './directives/highlight.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
@@ -26,7 +26,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NavbarComponent,
     TodoDetailsComponent,
     AddTodoComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HighlightDirective
   ],
   imports: [
     HttpClientModule,
